@@ -2,6 +2,9 @@ package Utilities;
 
 import Utilities.ConsoleCommands.CommandsFactory;
 import Utilities.ConsoleCommands.ConsoleExecutable;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
@@ -9,6 +12,7 @@ import java.util.Scanner;
  */
 public class UserConsolProcess implements Runnable {
     private Scanner sc = Reader.getReader();
+    private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
     public UserConsolProcess() {
         new Thread(this).start();
@@ -16,8 +20,8 @@ public class UserConsolProcess implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Добро пожаловать в автоматический диспетчер службы такси");
-        System.out.println("help - список доступных команд");
+        System.out.println(textResource.getValue("prop.key1"));
+        System.out.println(textResource.getValue("prop.key2"));
         while(true){
             String input = sc.nextLine();
             ConsoleExecutable command = CommandsFactory.getCommand(input);

@@ -1,5 +1,7 @@
 package Entity;
 
+import Utilities.TextResourceInstance;
+
 /**
  * Created by дима on 30.10.2016.
  */
@@ -16,6 +18,7 @@ public class Order {
     public static String TYPE_OF_ORDER_STATUS_IN_WORK_ORDER = "InWorkOrder";
     public static String TYPE_OF_ORDER_STATUS_CLOSET_ORDER = "ClosetOrder";
     public static String TYPE_OF_ORDER_STATUS_CANSEL_ORDER = "CanselOrder";
+    private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
     public Order(String startPoint, String endPoint, boolean isNeedBabySeat, boolean isNeedSmokeCar, int needCarClass) {
         this.startPoint = startPoint;
@@ -57,18 +60,18 @@ public class Order {
 
     @Override
     public String toString() {
-        String orderedCar = (this.carReserver == null) ? ", машина не назначена" : ", " + this.carReserver.toString();
+        String orderedCar = (this.carReserver == null) ? ", "+textResource.getValue("prop.key17") : ", " + this.carReserver.toString();
         String orderedType;
-        if (this.needCarClass == Car.TYPE_OF_CLASS_BUSYNESS) orderedType = "Бизнес класс";
-        else if (this.needCarClass == Car.TYPE_OF_CLASS_ECONOMIC) orderedType = "Эконом класс";
-        else orderedType = "Не присвоен";
+        if (this.needCarClass == Car.TYPE_OF_CLASS_BUSYNESS) orderedType = textResource.getValue("prop.key18");
+        else if (this.needCarClass == Car.TYPE_OF_CLASS_ECONOMIC) orderedType = textResource.getValue("prop.key19");
+        else orderedType = textResource.getValue("prop.key20");
         String orderStatus;
-        if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_NEW_ORDER) orderStatus = "новый заказ";
-        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_WAIT_ORDER) orderStatus = "ожидает машину";
-        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_IN_WORK_ORDER) orderStatus = "в работе";
-        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_CLOSET_ORDER) orderStatus = "закрыт";
-        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_CANSEL_ORDER) orderStatus = "отменен";
-        else orderStatus = "Не присвоен";
-        return "Статус заказа: "+orderStatus+". Пункт отправки: " + this.startPoint + ", конечная точка: " + this.endPoint + ", необходимо детское сидение: " + this.isNeedBabySeat + ", необходим салон для курящих: " + this.isNeedSmokeCar + ", класс машины: " + orderedType + orderedCar;
+        if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_NEW_ORDER) orderStatus = textResource.getValue("prop.key21");
+        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_WAIT_ORDER) orderStatus = textResource.getValue("prop.key22");
+        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_IN_WORK_ORDER) orderStatus = textResource.getValue("prop.key23");
+        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_CLOSET_ORDER) orderStatus = textResource.getValue("prop.key24");
+        else if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_CANSEL_ORDER) orderStatus = textResource.getValue("prop.key25");
+        else orderStatus = textResource.getValue("prop.key26");
+        return textResource.getValue("prop.key27")+": "+orderStatus+". "+textResource.getValue("prop.key28")+": " + this.startPoint + ", "+textResource.getValue("prop.key29")+": " + this.endPoint + ", "+ textResource.getValue("prop.key30") +": " + this.isNeedBabySeat + ", "+textResource.getValue("prop.key31")+": " + this.isNeedSmokeCar + ", "+textResource.getValue("prop.key32")+": " + orderedType + orderedCar;
     }
 }

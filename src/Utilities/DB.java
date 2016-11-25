@@ -7,6 +7,7 @@ import Entity.Order;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by admin on 14.11.2016.
@@ -17,6 +18,7 @@ public class DB {
     private List<Order> ordersArrayList = Collections.synchronizedList(new ArrayList<Order>());
     private List<Driver> driversArrayList = Collections.synchronizedList(new ArrayList<Driver>());
     private List<String> massageArrayList = Collections.synchronizedList(new ArrayList<String>());
+
 
     private DB() {
     }
@@ -43,4 +45,5 @@ public class DB {
     public synchronized List<String> getMassageArrayList() {
         return massageArrayList;
     }
+
 }

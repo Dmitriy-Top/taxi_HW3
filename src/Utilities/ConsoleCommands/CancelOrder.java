@@ -2,6 +2,7 @@ package Utilities.ConsoleCommands;
 
 import Entity.Order;
 import Utilities.DB;
+import Utilities.TextResourceInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class CancelOrder implements ConsoleExecutable {
     private List<Order> orderArrayList = DB.getInstance().getOrdersArrayList();
     private List<String> massageArrayList = DB.getInstance().getMassageArrayList();
+    private TextResourceInstance textResource = TextResourceInstance.getInstance();
     String params;
     int id;
 
@@ -20,10 +22,10 @@ public class CancelOrder implements ConsoleExecutable {
         if (isParsable(params)){
             id = Integer.parseInt(params);
             orderArrayList.get(id).setOrderStatus(Order.TYPE_OF_ORDER_STATUS_CANSEL_ORDER);
-            massageArrayList.add("Заказ ID"+id+" помечен как отмененный");
+            massageArrayList.add(textResource.getValue("prop.key11")+" "+id+" "+textResource.getValue("prop.key12"));
         }
         else{
-            massageArrayList.add("Не верные параметры cancelorder");
+            massageArrayList.add(textResource.getValue("prop.key13"));
         }
 
     }

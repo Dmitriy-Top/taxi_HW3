@@ -13,6 +13,7 @@ public class OrderDispatcherProcess implements Runnable {
     private List<Car> carArrayList = DB.getInstance().getCarsArrayList();
     private List<Order> orderArrayList = DB.getInstance().getOrdersArrayList();
     private List<String> massageArrayList = DB.getInstance().getMassageArrayList();
+    private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
     public OrderDispatcherProcess() {
         new Thread(this).start();
@@ -37,7 +38,7 @@ public class OrderDispatcherProcess implements Runnable {
                 }
                 if (order.getOrderStatus().equals(Order.TYPE_OF_ORDER_STATUS_NEW_ORDER)) { //если для новой заявки не найден автомобиль(статус заявки не поменялся), меняем ее статус на в "В ожидании" и предупреждаем пользователя об ожидании.
                     order.setOrderStatus(Order.TYPE_OF_ORDER_STATUS_WAIT_ORDER);
-                    massageArrayList.add("В данный момент нет подходящего для вас автомобиля, заявка ожидает подходящего, освободившегося автомобиля");
+                    massageArrayList.add(textResource.getValue("prop.key5"));
                 }
             }
         }
@@ -49,7 +50,7 @@ public class OrderDispatcherProcess implements Runnable {
                 order.setCarReserver(car);// закрепляем машину за заказом
                 order.setOrderStatus(Order.TYPE_OF_ORDER_STATUS_IN_WORK_ORDER);// статус заказ меняем на "В работе"
                 car.setCarStatus(Car.TYPE_OF_STATUS_RESERVED); // статус машины меняем на "Занята"
-                massageArrayList.add("На ваш заказ назначенна " + car.toString()); // сообщаем пользователю
+                massageArrayList.add(textResource.getValue("prop.key6")+ " " + car.toString()); // сообщаем пользователю
                 break;
             }
         }

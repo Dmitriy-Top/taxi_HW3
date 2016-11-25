@@ -3,6 +3,7 @@ package Utilities.ConsoleCommands;
 import Entity.Car;
 import Entity.Order;
 import Utilities.DB;
+import Utilities.TextResourceInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class NewOrder implements ConsoleExecutable {
     private List<Order> orderArrayList = DB.getInstance().getOrdersArrayList();
     private List<String> massageArrayList = DB.getInstance().getMassageArrayList();
+    private TextResourceInstance textResource = TextResourceInstance.getInstance();
     String params;
 
     public NewOrder(String params) {
@@ -24,9 +26,9 @@ public class NewOrder implements ConsoleExecutable {
         Order order = orderFactory(params);
         if (order != null) {
             orderArrayList.add(order);
-            massageArrayList.add("Заявка добавлена");
+            massageArrayList.add(textResource.getValue("prop.key7"));
         } else {
-            massageArrayList.add("Не верные параметры new order");
+            massageArrayList.add(textResource.getValue("prop.key8"));
         }
 
     }

@@ -2,6 +2,7 @@ package Utilities.ConsoleCommands;
 
 import Entity.Order;
 import Utilities.DB;
+import Utilities.TextResourceInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class OrderList implements ConsoleExecutable {
     private List<Order> orderArrayList = DB.getInstance().getOrdersArrayList();
     private List<String> massageArrayList = DB.getInstance().getMassageArrayList();
+    private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
     @Override
     public void execut() {
@@ -21,7 +23,7 @@ public class OrderList implements ConsoleExecutable {
                 result += "ID "+i+" - "+orderArrayList.get(i).toString()+"\n";
             }
         } else {
-            result = "Нет заявок";
+            result = textResource.getValue("prop.key9");
         }
         massageArrayList.add(result);
     }

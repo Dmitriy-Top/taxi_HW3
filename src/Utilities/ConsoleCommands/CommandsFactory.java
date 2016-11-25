@@ -19,6 +19,8 @@ public class CommandsFactory {
                 return new CancelOrder(args);
             case "orderlist":
                 return new OrderList();
+            case "language":
+                return new Language(args);
             default:
                 return new Help();
         }
