@@ -7,6 +7,7 @@ import Utilities.TextResourceInstance;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by admin on 15.11.2016.
@@ -46,8 +47,8 @@ public class NewOrder implements ConsoleExecutable {
         boolean isCorrect = true;
         if (orderFields.length < 5) isCorrect = false;
         try {
-            if (orderFields[0].length() == 0) isCorrect = false;
-            if (orderFields[1].length() == 0) isCorrect = false;
+            if (!checkRegExpAdress(orderFields[0])) isCorrect = false;
+            if (!checkRegExpAdress(orderFields[1])) isCorrect = false;
             if (!"true".equals(orderFields[2]) && !"false".equals(orderFields[2])) isCorrect = false;
             if (!"true".equals(orderFields[3]) && !"false".equals(orderFields[3])) isCorrect = false;
             if (!(Car.TYPE_OF_CLASS_BUSYNESS == Integer.parseInt(orderFields[4])) && !(Car.TYPE_OF_CLASS_ECONOMIC == Integer.parseInt(orderFields[4])))
@@ -58,5 +59,10 @@ public class NewOrder implements ConsoleExecutable {
             isCorrect = false;
         }
         return isCorrect;
+    }
+    private boolean checkRegExpAdress(String adress){
+        String pattern = "^(ул\\.|улица|бульвар|б-р|проспект|пр\\.) (.*) (\\d+)$";
+        Pattern pattern1 = Pattern.compile(pattern);
+        return pattern1.matcher(adress).matches();
     }
 }
