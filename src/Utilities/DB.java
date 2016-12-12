@@ -15,7 +15,7 @@ import java.util.Locale;
 public class DB {
     private static DB instance;
     private List<Car> carsArrayList = Collections.synchronizedList(new ArrayList<Car>());
-    private List<Order> ordersArrayList = Collections.synchronizedList(new ArrayList<Order>());
+    private List<Order> carsOrdersList = Collections.synchronizedList(new ArrayList<Order>());
     private List<Driver> driversArrayList = Collections.synchronizedList(new ArrayList<Driver>());
     private List<String> massageArrayList = Collections.synchronizedList(new ArrayList<String>());
 
@@ -35,7 +35,7 @@ public class DB {
     }
 
     public synchronized List<Order> getOrdersArrayList() {
-        return ordersArrayList;
+        return carsOrdersList;
     }
 
     public synchronized List<Driver> getDriversArrayList() {
