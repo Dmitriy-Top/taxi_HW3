@@ -1,6 +1,7 @@
 package Utilities;
 
 import Entity.Car;
+import Entity.Enums.CarStatus;
 import Entity.Order;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class OrderDispatcherProcess implements Runnable {
             if (compareOrderToCar(car, order)) {
                 order.setCarReserver(car);// закрепляем машину за заказом
                 order.setOrderStatus(Order.TYPE_OF_ORDER_STATUS_IN_WORK_ORDER);// статус заказ меняем на "В работе"
-                car.setCarStatus(Car.TYPE_OF_STATUS_RESERVED); // статус машины меняем на "Занята"
+                car.setCarStatus(CarStatus.RESERVED); // статус машины меняем на "Занята"
                 massageArrayList.add(textResource.getValue("prop.key6")+ " " + car.toString()); // сообщаем пользователю
                 break;
             }
@@ -60,7 +61,7 @@ public class OrderDispatcherProcess implements Runnable {
 
     private static boolean compareOrderToCar(Car car, Order order) { //сопоставление машины и заказа
         boolean isSuitCar = true;
-        if (Car.TYPE_OF_STATUS_RESERVED.equals(car.getCarStatus())) return false;
+        if (CarStatus.RESERVED.toString().equals(car.getCarStatus())) return false;
         if (!(car.isHaveBabySeat() == order.isNeedBabySeat())) isSuitCar = false;
         if (!(car.isSmokeCar() == order.isNeedSmokeCar())) isSuitCar = false;
         if (!(car.getCarClass() == order.getNeedCarClass())) isSuitCar = false;

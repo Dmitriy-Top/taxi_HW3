@@ -1,5 +1,6 @@
 package Entity;
 
+import Entity.Enums.CarClass;
 import Utilities.TextResourceInstance;
 
 /**
@@ -10,7 +11,7 @@ public class Order {
     private String endPoint;
     private boolean isNeedBabySeat;
     private boolean isNeedSmokeCar;
-    private int needCarClass;
+    private CarClass needCarClass;
     private volatile Car carReserver;
     private volatile String orderStatus;
     public static String TYPE_OF_ORDER_STATUS_NEW_ORDER = "NewOrder";
@@ -20,7 +21,7 @@ public class Order {
     public static String TYPE_OF_ORDER_STATUS_CANSEL_ORDER = "CanselOrder";
     private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
-    public Order(String startPoint, String endPoint, boolean isNeedBabySeat, boolean isNeedSmokeCar, int needCarClass) {
+    public Order(String startPoint, String endPoint, boolean isNeedBabySeat, boolean isNeedSmokeCar, CarClass needCarClass) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.isNeedBabySeat = isNeedBabySeat;
@@ -38,7 +39,7 @@ public class Order {
         return isNeedSmokeCar;
     }
 
-    public int getNeedCarClass() {
+    public CarClass getNeedCarClass() {
         return needCarClass;
     }
 
@@ -62,8 +63,8 @@ public class Order {
     public String toString() {
         String orderedCar = (this.carReserver == null) ? ", "+textResource.getValue("prop.key17") : ", " + this.carReserver.toString();
         String orderedType;
-        if (this.needCarClass == Car.TYPE_OF_CLASS_BUSYNESS) orderedType = textResource.getValue("prop.key18");
-        else if (this.needCarClass == Car.TYPE_OF_CLASS_ECONOMIC) orderedType = textResource.getValue("prop.key19");
+        if (this.needCarClass == CarClass.BUSYNESS) orderedType = textResource.getValue("prop.key18");
+        else if (this.needCarClass == CarClass.ECONOMIC) orderedType = textResource.getValue("prop.key19");
         else orderedType = textResource.getValue("prop.key20");
         String orderStatus;
         if (this.orderStatus == Order.TYPE_OF_ORDER_STATUS_NEW_ORDER) orderStatus = textResource.getValue("prop.key21");

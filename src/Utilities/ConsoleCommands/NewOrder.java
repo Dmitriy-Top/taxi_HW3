@@ -1,6 +1,7 @@
 package Utilities.ConsoleCommands;
 
 import Entity.Car;
+import Entity.Enums.CarClass;
 import Entity.Order;
 import Utilities.DB;
 import Utilities.TextResourceInstance;
@@ -38,7 +39,7 @@ public class NewOrder implements ConsoleExecutable {
         Order order = null;
         String orderFields[] = params.split("\\|");
         if (checkOrderFieldsIsCorrect(orderFields)) {
-            order = new Order(orderFields[0], orderFields[1], Boolean.parseBoolean(orderFields[2]), Boolean.parseBoolean(orderFields[3]), Integer.parseInt(orderFields[4]));
+            order = new Order(orderFields[0], orderFields[1], Boolean.parseBoolean(orderFields[2]), Boolean.parseBoolean(orderFields[3].toUpperCase()), CarClass.valueOf(orderFields[4].toUpperCase()));
         }
         return order;
     }
@@ -51,7 +52,7 @@ public class NewOrder implements ConsoleExecutable {
             if (!checkRegExpAdress(orderFields[1])) isCorrect = false;
             if (!"true".equals(orderFields[2]) && !"false".equals(orderFields[2])) isCorrect = false;
             if (!"true".equals(orderFields[3]) && !"false".equals(orderFields[3])) isCorrect = false;
-            if (!(Car.TYPE_OF_CLASS_BUSYNESS == Integer.parseInt(orderFields[4])) && !(Car.TYPE_OF_CLASS_ECONOMIC == Integer.parseInt(orderFields[4])))
+            if (!CarClass.isHaveVolume(orderFields[4]))
                 isCorrect = false;
         } catch (NumberFormatException e) {
             isCorrect = false;

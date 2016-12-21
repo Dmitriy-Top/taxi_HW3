@@ -1,5 +1,7 @@
 package Entity;
 
+import Entity.Enums.CarClass;
+import Entity.Enums.CarStatus;
 import Utilities.TextResourceInstance;
 
 /**
@@ -11,17 +13,17 @@ public class Car {
     private String carNumber;
     private boolean isHaveBabySeat;
     private boolean isSmokeCar;
-    private int carClass;
-    private volatile String carStatus;
+    private CarClass carClass;
+    private CarStatus carStatus;
     private volatile Order order;
-    public static final int TYPE_OF_CLASS_ECONOMIC = 0;
-    public static final int TYPE_OF_CLASS_BUSYNESS = 1;
-    public static final String TYPE_OF_STATUS_FREE = "free";
-    public static final String TYPE_OF_STATUS_RESERVED = "reserver";
+    //public static final int TYPE_OF_CLASS_ECONOMIC = 0;
+    //public static final int TYPE_OF_CLASS_BUSYNESS = 1;
+    //public static final String TYPE_OF_STATUS_FREE = "free";
+    //public static final String TYPE_OF_STATUS_RESERVED = "reserver";
     private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
 
-    public Car(String carMark, Driver carDriver, String carNumber, boolean isHaveBabySeat, boolean isSmokeCar, int carClass, String carStatus) {
+    public Car(String carMark, Driver carDriver, String carNumber, boolean isHaveBabySeat, boolean isSmokeCar, CarClass carClass, CarStatus carStatus) {
         this.carMark = carMark;
         this.carDriver = carDriver;
         this.carNumber = carNumber;
@@ -32,10 +34,10 @@ public class Car {
     }
 
     public synchronized String getCarStatus() {
-        return carStatus;
+        return carStatus.toString();
     }
 
-    public int getCarClass() {
+    public CarClass getCarClass() {
         return carClass;
     }
 
@@ -48,7 +50,7 @@ public class Car {
     }
 
 
-    public synchronized void setCarStatus(String carStatus) {
+    public synchronized void setCarStatus(CarStatus carStatus) {
         this.carStatus = carStatus;
     }
 
