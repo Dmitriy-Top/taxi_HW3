@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * Created by admin on 02.11.2016.
  */
-public class ShowUserMassageProcess implements Runnable{
+public class UserMassageHelperThread implements Runnable{
     private List<String> massageArrayList = DB.getInstance().getMassageArrayList();
 
-    public ShowUserMassageProcess() {
+    public UserMassageHelperThread() {
         new Thread(this).start();
     }
 

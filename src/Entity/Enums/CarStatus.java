@@ -9,7 +9,7 @@ public enum CarStatus {
 
 
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return name().toLowerCase();
     }
 }

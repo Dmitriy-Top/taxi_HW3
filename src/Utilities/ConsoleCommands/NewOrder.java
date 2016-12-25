@@ -28,7 +28,7 @@ public class NewOrder implements ConsoleExecutable {
         Order order = orderFactory(params);
         if (order != null) {
             orderArrayList.add(order);
-            massageArrayList.add(textResource.getValue("prop.key7"));
+            massageArrayList.add(textResource.getValue("prop.key7")+" ID:"+order.getId());
         } else {
             massageArrayList.add(textResource.getValue("prop.key8"));
         }

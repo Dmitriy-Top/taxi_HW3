@@ -7,6 +7,8 @@ import Utilities.TextResourceInstance;
  * Created by дима on 30.10.2016.
  */
 public class Order {
+    static private int idCounter =0;
+    private int id;
     private String startPoint;
     private String endPoint;
     private boolean isNeedBabySeat;
@@ -15,6 +17,7 @@ public class Order {
     private volatile Car carReserver;
     private volatile String orderStatus;
     public static String TYPE_OF_ORDER_STATUS_NEW_ORDER = "NewOrder";
+    public static String TYPE_OF_ORDER_STATUS_NEW_ORDER_WITH_RUN_THREAD = "NewOrderWithRunThread";
     public static String TYPE_OF_ORDER_STATUS_WAIT_ORDER = "WaitOrder";
     public static String TYPE_OF_ORDER_STATUS_IN_WORK_ORDER = "InWorkOrder";
     public static String TYPE_OF_ORDER_STATUS_CLOSET_ORDER = "ClosetOrder";
@@ -29,6 +32,7 @@ public class Order {
         this.needCarClass = needCarClass;
         this.carReserver = null;
         this.orderStatus = Order.TYPE_OF_ORDER_STATUS_NEW_ORDER;
+        this.id = Order.getIdCounter();
     }
 
     public boolean isNeedBabySeat() {
@@ -51,11 +55,23 @@ public class Order {
         this.carReserver = carReserver;
     }
 
-    public synchronized String getOrderStatus() {
+    public String getEndPoint() {
+        return endPoint;
+    }
+
+    public static int getIdCounter() {
+        return idCounter++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public synchronized void setOrderStatus(String orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 

@@ -10,11 +10,11 @@ import java.util.Scanner;
 /**
  * Created by admin on 15.11.2016.
  */
-public class UserConsolProcess implements Runnable {
+public class OrderReaderThread implements Runnable {
     private Scanner sc = Reader.getReader();
     private TextResourceInstance textResource = TextResourceInstance.getInstance();
 
-    public UserConsolProcess() {
+    public OrderReaderThread() {
         new Thread(this).start();
     }
 

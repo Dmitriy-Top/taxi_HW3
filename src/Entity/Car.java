@@ -14,8 +14,7 @@ public class Car {
     private boolean isHaveBabySeat;
     private boolean isSmokeCar;
     private CarClass carClass;
-    private CarStatus carStatus;
-    private volatile Order order;
+    private volatile CarStatus carStatus;
     //public static final int TYPE_OF_CLASS_ECONOMIC = 0;
     //public static final int TYPE_OF_CLASS_BUSYNESS = 1;
     //public static final String TYPE_OF_STATUS_FREE = "free";
@@ -48,7 +47,6 @@ public class Car {
     public boolean isHaveBabySeat() {
         return isHaveBabySeat;
     }
-
 
     public synchronized void setCarStatus(CarStatus carStatus) {
         this.carStatus = carStatus;
